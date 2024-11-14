@@ -33,7 +33,7 @@ class ImportController extends Controller
 
             $rows = SimpleExcelReader::create(storage_path('app/' . $path))
                         ->useDelimiter(';') //Mudando o delimitador, o habitual é ','
-                        ->headerOnRow(1)
+                        ->headerOnRow(1) //Definindo cabeçalho
                         ->headersToSnakeCase() //Transforma o cabeçalho em Snake case
                         ->skip(1) //Pula a primeira linha
                         ->getRows();

@@ -1,52 +1,26 @@
-<p>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQIAOtqQ5is5vwbcEn0ZahZfMxz1QIeAYtFfnLdkCXu1sqAGbnX" width="300">
- </p>
- 
-### A Oliveira Trust:
-A Oliveira Trust é uma das maiores empresas do setor Financeiro com muito orgulho, desde 1991, realizamos as maiores transações do mercado de Títulos e Valores Mobiliários.
+API para importação de dados
+Essa API tem como finalidade importar dados de documentos CSV e Excel.
 
-Somos uma empresa em que valorizamos o nosso colaborador em primeiro lugar, sempre! Alinhando isso com a nossa missão "Promover a satisfação dos nossos clientes e o desenvolvimento pessoal e profissional da nossa equipe", estamos construindo times excepcionais em Tecnologia, Comercial, Engenharia de Software, Produto, Financeiro, Jurídico e Data Science.
+Iniciando
+Para utilizar a API, é necessário se cadastrar e utilizar o Token fornecido para realizar as requisições. O tipo de autenticação é Bearer Token.
 
-Estamos buscando uma pessoa que seja movida a desafios, que saiba trabalhar em equipe e queira revolucionar o mercado financeiro!
+Para se registrar acesse a rota: /api/register e forneça as seguintes informações:
 
-Front-end? Back-end? Full Stack? Analista de dados? Queremos conhecer gente boa, que goste de colocar a mão na massa, seja responsável e queira fazer história!
+name: Seu nome de Usuário email: Um email válido para o acesso password : Uma senha de sua confiança password_confirmation : Confirmação da senha
 
-#### O que você precisa saber para entrar no nosso time: 🚀
-- Trabalhar com frameworks (Laravel, Lumen, Yii, Cake, Symfony ou outros...)
-- Banco de dados relacional (MySql, MariaDB)
-- Trabalhar com microsserviços
+Com isso você receberá como resposta as informações do seu usuário e o seu token para acessar as rotas subsequentes.
 
-#### O que seria legal você saber também: 🚀
-- Conhecimento em banco de dados não relacional;
-- Conhecimento em docker;
-- Conhecimento nos serviços da AWS (RDS, DynamoDB, DocumentDB, Elasticsearch);
-- Conhecimento em metodologias ágeis (Scrum/Kanban);
+Endpoints:
+Os seguintes Endpoints estão disponíveis:
 
-#### Ao entrar nessa jornada com o nosso time, você vai: 🚀
-- Trabalhar em uma equipe de tecnologia, em um ambiente leve e descontraído e vivenciar a experiência de mudar o mercado financeiro;
-- Dress code da forma que você se sentir mais confortável;
-- Flexibilidade para home office e horários;
-- Acesso a cursos patrocinados pela empresa;
+Login : /api/login Método: POST Caso já possua um usuário no sistema, pode fornecer suas informações para realizar o login. Campos: - name: string; - password: string;
 
-#### Benefícios 🚀
-- Salário compatível com o mercado;
-- Vale Refeição (CAJU);
-- Vale Alimentação (CAJU);
-- Vale Transporte ou Vale Combustível (CAJU);
-- Plano de Saúde e Odontológico;
-- Seguro de vida;
-- PLR Semestral;
-- Horário Flexível;
-- Parcerias em farmácias
+Retorno: - user: - name: string; - email: string; - token
 
-#### Local: 🚀
-Barra da Tijuca, Rio de Janeiro, RJ
+Logout: /api/logout Método: POST Utilize para sair do sistema e revogar seu token.
 
-#### Conheça mais sobre nós! :sunglasses:
-- Website (https://www.oliveiratrust.com.br/)
-- LinkedIn (https://www.linkedin.com/company/oliveiratrust/)
+Importar: /api/import Método: POST Endpoint responsável pela importação do arquivo, utilize para o envio do documento. Documentos repetidos não serão aceitos. Campos: - file: file;
 
-A Oliveira Trust acredita na inclusão e na promoção da diversidade em todas as suas formas. Temos como valores o respeito e valorização das pessoas e combatemos qualquer tipo de discriminação. Incentivamos a todos que se identifiquem com o perfil e requisitos das vagas disponíveis que candidatem, sem qualquer distinção.
+Histórico de Arquivos: /api/file-history Método: GET Lista os arquivos enviados para a API, use para saber se seu arquivo já foi enviado e quando. Parametros: - filter_file_name: Pesquisar por um arquivo pelo nome - String - filter_date: Pesquisar por um arquivo pela data - Date('y-m-d) Retorno: - filename: string; - id: integer; - created_at: datetime; - updated_at: datetime;
 
-## Pronto para o desafio? 🚀🚀🚀🚀
-https://github.com/Oliveira-Trust/desafio-desenvolvedor/blob/master/vaga3.md
+Dados: /api/data Método: GET Lista os dados importados dos arquivos enviados para a API. Parametros: - filter_tckr_symb: Pesquisa pelo respectivo campo - String - filter_rpt_dt: Pesquisa pelo respectivo campo - Date('y-m-d') Retorno: Todos os campos do arquivo
