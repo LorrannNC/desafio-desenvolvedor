@@ -21,5 +21,7 @@ Route::post('/login', 'AuthController@login');
 //Grupo de Rotas protegidas por autenticação
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::middleware('auth:sanctum')->post('/logout', 'AuthController@logout');
-    Route::apiResource('users', 'UserController');
+    Route::apiResource('/users', 'UserController');
+    Route::post('/import', 'ImportController@handle');
+    Route::get('/data', 'DataController@index');
 });
