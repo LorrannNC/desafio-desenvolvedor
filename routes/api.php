@@ -24,4 +24,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('/users', 'UserController');
     Route::post('/import', 'ImportController@handle');
     Route::get('/data', 'DataController@index');
+    Route::get('/file-history', 'FileHistoryController@index');
 });

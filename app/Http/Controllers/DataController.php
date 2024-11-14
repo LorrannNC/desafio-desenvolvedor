@@ -18,7 +18,7 @@ class DataController extends Controller
     {
         $datas = Data::query();
 
-        $per_page = $request->query('per_page', config('api.paginate.per_page', 100));
+        $per_page = $request->query('per_page', 100);
 
         if ($request->query('filter_tckr_symb')) {
             $datas->where('tckr_symb', $request->query('filter_tckr_symb'));

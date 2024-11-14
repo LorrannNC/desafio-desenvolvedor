@@ -70,8 +70,6 @@ class CreateDatasTable extends Migration
             $table->string('ctdy_trtmnt_tp_nm')->nullable();
             $table->string('mkt_cptlstn')->nullable();
             $table->string('corp_govn_lvl_nm')->nullable();
-
-            $table->timestamps();
         });
     }
 
